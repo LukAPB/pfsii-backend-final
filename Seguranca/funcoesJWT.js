@@ -5,8 +5,8 @@ import jwt from 'jsonwebtoken';
 //Nós não podemos manter senhas e segredos disponibilizados no código fonte
 //Informações sensíveis devem ser armazenadas em variávieis de ambiente
 
-export function assinar(usuario){
-    const token = jwt.sign({usuario}, process.env.SEGREDO, {expiresIn: '300s'});
+export function assinar(Candidato){
+    const token = jwt.sign({Candidato}, process.env.SEGREDO, {expiresIn: '300s'});
     return token;
 }
 

@@ -1,30 +1,26 @@
-USE backendaluno0pfsii;
+create database atividadefinal
 
-CREATE TABLE cliente (
-    codigo INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    telefone VARCHAR(15) NOT NULL,
-    endereco VARCHAR(255) NOT NULL
+use atividadefinal
+
+CREATE TABLE candidatos (
+    pk_cand_cpf VARCHAR(11) PRIMARY KEY,
+    cand_nome VARCHAR(255) NOT NULL,
+    cand_endereco VARCHAR(255) NOT NULL,
+    cand_telefone VARCHAR(20) NOT NULL
 );
-
-
--- Tabela para armazenar os pedidos
-CREATE TABLE pedido (
-    codigo INT PRIMARY KEY AUTO_INCREMENT, 
-    cliente_codigo INT,
-    total DECIMAL(10, 2) NOT NULL,
-    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT FK_CLIENTE FOREIGN KEY (cliente_codigo) REFERENCES cliente(codigo)
+CREATE TABLE vagas (
+    pk_vaga_codigo INT PRIMARY KEY AUTO_INCREMENT,
+    vaga_cargo VARCHAR(255) NOT NULL,
+    vaga_salario DECIMAL(10,2) NOT NULL,
+    vaga_cidade VARCHAR(255) NOT NULL,
+    vaga_quantidade INT NOT NULL
 );
-
--- Tabela para armazenar os itens do pedido
-CREATE TABLE pedido_produto (
-    pedido_codigo INT NOT NULL,
-    produto_codigo INT NOT NULL,
-    quantidade INT NOT NULL,
-    preco_unitario DECIMAL(10, 2) NOT NULL,
-    PRIMARY KEY (pedido_codigo, produto_codigo),
-    CONSTRAINT FK_PEDIDO FOREIGN KEY (pedido_codigo) REFERENCES pedido(codigo),
-    CONSTRAINT FK_PRODUTO FOREIGN KEY (produto_codigo) REFERENCES produto(prod_codigo)
+CREATE TABLE inscricoes (
+    pk_inscricao_id INT PRIMARY KEY AUTO_INCREMENT,
+    pk_cand_cpf VARCHAR(11) NOT NULL,
+    pk_vaga_codigo INT NOT NULL,
+    data_inscricao DATE NOT NULL,
+    horario_inscricao TIME NOT NULL,
+    FOREIGN KEY (pk_cand_cpf) REFERENCES candidatos(pk_cand_cpf),
+    FOREIGN KEY (pk_vaga_codigo) REFERENCES vagas(pk_vaga_codigo)
 );
-
