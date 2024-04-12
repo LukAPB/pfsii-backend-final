@@ -5,6 +5,7 @@ const rotaInscricoes = new Router();
 const inscricoesCtrl = new InscricaoCtrl();
 
 rotaInscricoes
+.get('/:cpf', inscricoesCtrl.consultarCPF)
 .get('/', inscricoesCtrl.consultar)
 .post('/', inscricoesCtrl.gravar);
 //.patch('/', pedidoCtrl.atualizar)

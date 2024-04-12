@@ -95,4 +95,11 @@ export default class Inscricao {
         const listaInscricoes = await inscricaoDAO.consultar();
         return listaInscricoes;
     }
+
+
+    async consultarCPF(cpf) {
+        const inscricaoDAO = new InscricaoDAO();
+        const listaInscricoes = await inscricaoDAO.consultarCpf(cpf);
+        return listaInscricoes;
+    }
 }

@@ -61,4 +61,37 @@ export default class InscricaoCtrl {
             }
       
     }
+
+
+    consultarCPF(requisicao, resposta) {
+        resposta.type('application/json');
+        if (requisicao.method === 'GET') {
+            const cpf = requisicao.params.cpf;
+            if (cpf) {
+                const inscricao = new Inscricao(cpf);
+                inscricao.consultarCPF(cpf).then((listaInscricoes) => {
+                    resposta.status(200).json({
+                        "status": true,
+                        "listaInscricoes": listaInscricoes
+                    });
+                })
+                .catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao consultar a inscrição: " + erro.message
+                    });
+                });
+            } else {
+                resposta.status(400).json({
+                    "status": false,
+                    "mensagem": "Por favor, informe um CPF válido!"
+                });
+            }
+        } else {
+            resposta.status(400).json({
+                "status": false,
+                "mensagem": "Por favor, utilize o método GET para consultar uma inscrição!"
+            });
+        }
+    }
 }
