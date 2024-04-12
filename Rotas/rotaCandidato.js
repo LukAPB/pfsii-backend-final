@@ -10,7 +10,7 @@ rotaCandidato
 .post('/', candidatoCtrl.criar)
 .put('/',candidatoCtrl.atualizar)
 .delete('/',candidatoCtrl.excluir)
+.get('/nome/:nome', candidatoCtrl.consultarNome)
 .get('/', candidatoCtrl.consultar)
 .get('/:cpf', candidatoCtrl.cosultarCPF);
-
 export default rotaCandidato;

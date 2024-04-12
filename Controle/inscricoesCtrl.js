@@ -94,4 +94,6 @@ export default class InscricaoCtrl {
             });
         }
     }
+
+
 }

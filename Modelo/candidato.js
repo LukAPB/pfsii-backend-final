@@ -74,4 +74,9 @@ export default class Candidato {
         return await candidatoDAO.consultarCPF(cpf);
     }
 
+   async consultarNome(nome) {
+        const candidatoDAO = new CandidatoDAO();
+        return await candidatoDAO.consultarNome(nome);
+    }   
+
 }

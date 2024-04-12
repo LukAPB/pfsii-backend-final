@@ -69,4 +69,10 @@ export default class CandidatoDAO {
     //     }
     //     return listaCandidatos;
     // }
+
+    async consultarNome(nome) {
+        const conexao = await conectar();
+        const [registros] = await conexao.execute('SELECT * FROM candidatos WHERE cand_nome LIKE ?', ['%' + nome + '%']);
+        return registros;
+    }
 }

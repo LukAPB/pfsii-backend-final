@@ -102,4 +102,6 @@ export default class Inscricao {
         const listaInscricoes = await inscricaoDAO.consultarCpf(cpf);
         return listaInscricoes;
     }
+
+    
 }

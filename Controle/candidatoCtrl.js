@@ -183,4 +183,36 @@ export default class CandidatoCtrl {
             });
         }
     }
+
+    consultarNome(requisicao, resposta) {
+        resposta.type('application/json');
+        if (requisicao.method === "GET") {
+            const nome = requisicao.params.nome;
+            if (nome) {
+                const candidato = new Candidato();
+                candidato.consultarNome(nome).then((listaCandidatos) => {
+                    resposta.json({
+                        status: true,
+                        listaCandidatos
+                    });
+                })
+                .catch((erro) => {
+                    resposta.json({
+                        status: false,
+                        mensagem: "Não foi possível obter os usuários: " + erro.message
+                    });
+                });
+            } else {
+                resposta.status(400).json({
+                    "status": false,
+                    "mensagem": "Por favor, informe o nome do usuário!"
+                });
+            }
+        } else {
+            resposta.status(400).json({
+                "status": false,
+                "mensagem": "Por favor, utilize o método GET para consultar usuários!"
+            });
+        }
+    }
 }
