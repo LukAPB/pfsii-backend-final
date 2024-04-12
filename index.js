@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import rotaCandidato from './Rotas/rotaCandidato.js';
+import rotaCandidato from './Rotas/rotacandidato.js';
 import rotaVagas from './Rotas/rotaVagas.js';
 import rotaInscricoes from './Rotas/rotaInscricoes.js';
 import dotenv from 'dotenv';

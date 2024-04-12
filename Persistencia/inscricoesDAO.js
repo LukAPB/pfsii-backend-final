@@ -33,7 +33,7 @@ export default class InscricaoDao {
         return registros[0]; // Retorna a primeira inscrição encontrada com esse ID
     }
 
-    async consultarPorCpf(cpf) {
+    async consultarCpf(cpf) {
         const conexao = await conectar();
         const [registros, campos] = await conexao.execute('SELECT * FROM inscricoes WHERE pk_cand_cpf = ?', [cpf]);
         return registros; // Retorna todas as inscrições do usuário com esse CPF

@@ -39,6 +39,12 @@ export default class CandidatoDAO {
         return registros;
     }
 
+    async consultarCPF(cpf) {
+        const conexao = await conectar();
+        const [registros] = await conexao.execute('SELECT * FROM candidatos WHERE pk_cand_cpf = ?', [cpf]);
+        return registros;
+    }
+
     // async consultar() {
     //     let sql = '';
     //     let parametros = [];

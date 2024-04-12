@@ -141,11 +141,28 @@ export default class CandidatoCtrl {
             const cpf = requisicao.params.cpf;
             if (cpf) {
                 const candidato = new Candidato(cpf);
-                candidato.consultarPorCPF().then((candidato) => {
+                candidato.consultarCPF(cpf) 
+                .then((candidato) => {
+                    if (candidato.length === 0) {
+                        resposta.status(404).json({
+                            "status": false,
+                            "mensagem": "Candidato não encontrado!"
+                        });
+                        return;
+                    }
+                    else if (candidato.length > 1) {
+                        resposta.status(500).json({
+                            "status": false,
+                            "mensagem": "Erro ao consultar candidato: mais de um usuário encontrado!"
+                        });
+                        return;
+                    }
+                    else {
                     resposta.json({
                         status: true,
                         candidato
                     });
+                    }
                 })
                 .catch((erro) => {
                     resposta.json({
